@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  replicas: 1 # added this to specify the number of relicas as required by project
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - image: mysql #from dockerhub
+          name: mysql
+          env:
+            # Use secret in real usage
+            - name: DB_User #using secrets as enviornment variables (kubernetes.io)
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret #changed the name as per the secret manifest
+                  key: DB_User
+            - name: MYSQL_ROOT_PASSWORD #sql env variables
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret #changed the name as per the secret manifest
+                  key: DB_Password #sql env variables
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
