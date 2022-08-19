@@ -32,7 +32,7 @@ jobs:
         ECR_REPOSITORY: final_group_project_1
         IMAGE_TAG: mysql-webappv0.1
       run: |
-        cd /Simple-webapp/simple-webapp-mysql-master/
+        cd /simple-webapp-mysql-master/
         ls -ltra
         # Docker build
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
