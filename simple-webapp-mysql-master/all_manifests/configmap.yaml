@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  group_name: groupname16
+  success_image_uri: https://finalprojectg16.s3.amazonaws.com/success.jpg
+  failed_image_uri: https://finalprojectg16.s3.amazonaws.com/failed.png
