@@ -19,7 +19,7 @@ spec:
           name: mysql
           env:
             # Use secret in real usage
-            - name: DB_User #using secrets as enviornment variables (kubernetes.io)
+            - name: DB_User #sql env var
               valueFrom:
                 secretKeyRef:
                   name: app-secret #changed the name as per the secret manifest
