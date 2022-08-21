@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  #starts build
+  #start the build
   build:
     
     name: Build Image
