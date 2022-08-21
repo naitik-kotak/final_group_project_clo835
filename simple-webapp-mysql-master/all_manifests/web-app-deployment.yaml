@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-webapp-mysql
+  labels:
+    app: example-app
+    name: simple-webapp-mysql
+spec:
+  selector:
+    matchLabels:
+      name: simple-webapp-mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: simple-webapp-mysql
+    spec:
+      containers:
+      - name: simple-webapp-mysql
+        image: 675714987075.dkr.ecr.us-east-1.amazonaws.com/final_group_project_1:latest
+        ports:
+        - containerPort: 81
